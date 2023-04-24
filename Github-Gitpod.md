@@ -40,7 +40,7 @@ Enfin, il suffit de cliquer sur le bouton "Create repository" pour finaliser la 
 
 ![image](https://user-images.githubusercontent.com/123749462/225642485-cefe1ba2-d892-4a01-89c6-eb90d932db91.png)
 
-- Copier et Coller l'URL qu'on va vous donner: 
+- Copier et Coller l'URL du repository Github crée: 
 
 ![image](https://user-images.githubusercontent.com/123749462/225642811-59d55165-5d8c-4575-842d-0e941bae80e1.png)
 
