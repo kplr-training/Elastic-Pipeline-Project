@@ -110,6 +110,59 @@ Le troisième service défini est Kibana, qui utilise l'image Docker Kibana offi
 * L'option "depends_on" spécifie que le service Kibana dépend du service Elasticsearch, ce qui signifie que le service Elasticsearch doit être démarré avant le service Kibana. 
 * Le service est connecté au réseau "elk".
 
+```
+version: '3.6'
+services:
+  Elasticsearch:
+    image: elasticsearch:8.7.0
+    container_name: elasticsearch
+    restart: always
+    volumes:
+    - elastic_data:/usr/share/elasticsearch/data/
+    environment:
+      XPACK_MONITORING_ENABLED: false
+      xpack.security.enabled: false
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      discovery.type: single-node
+      network.host: "0.0.0.0" 
+    ports:
+    - '9200:9200'
+    - '9300:9300'
+    networks:
+      - elk
+
+  Logstash:
+    image: logstash:8.7.0
+    container_name: logstash
+    restart: always
+    volumes:
+    - ./logstash/:/logstash_dir
+    - ./input:/input
+    - ./output:/output
+    command: logstash -f /logstash_dir/logstash.conf 
+    depends_on:
+      - Elasticsearch
+    ports:
+    - '9600:9600'
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk
+
+  Kibana:
+    image: kibana:8.7.0
+    container_name: kibana
+    restart: always       
+    ports:
+    - '5601:5601'
+    environment:
+      - ELASTICSEARCH_URL=https://9200-xxxxxxxx.gitpod.io
+    depends_on:
+      - Elasticsearch  
+    networks:
+      - elk
+```
+
 ### 3. Determiner les sections volumes et networks
 
 Enfin, la section "volumes" définit le volume "elastic_data" utilisé par Elasticsearch, et la section "networks" définit le réseau "elk" utilisé par tous les services.
