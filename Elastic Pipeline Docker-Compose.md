@@ -38,7 +38,10 @@ Le troisième service défini est Kibana, qui utilise l'image Docker Kibana offi
 * Le service est nommé "Kibana" et a un nom de conteneur "kibana". 
 * L'option "restart" est définie sur "always". 
 * Le service expose le port 5601, qui est utilisé pour la communication avec Kibana. 
-* L'option "ELASTICSEARCH_URL" spécifie l'URL Elasticsearch que Kibana doit utiliser. 
+* L'option "ELASTICSEARCH_URL" spécifie l'URL Elasticsearch que Kibana doit utiliser. Pour récupérer le port utiliser la commande : 
+  ```
+    gp url 9200
+  ```
 * L'option "depends_on" spécifie que le service Kibana dépend du service Elasticsearch, ce qui signifie que le service Elasticsearch doit être démarré avant le service Kibana. 
 * Le service est connecté au réseau "elk".
 
