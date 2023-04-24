@@ -1,5 +1,14 @@
 # Elastic Pipeline
 
+
+Avant de créer le fichier docker-compose.yml vous devriez créer 3 dossiers:
+  1. `input` : qui contient un fichier `inlog.log` vide.
+  2. `logstash` : qui contient un fichier `logstash.conf` vide.
+  3.  `output` : qui contient aucun fichier.
+
+   ![image](https://user-images.githubusercontent.com/123748165/234107655-c5300edf-00c0-4b3e-8583-b5b05cdb325e.png)
+
+
 ## Creation du docker-compose.yaml
 
 Définir un fichier Docker Compose qui est utilisé pour gérer plusieurs conteneurs dans une seule application. 
