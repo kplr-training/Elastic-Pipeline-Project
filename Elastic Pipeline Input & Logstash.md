@@ -40,3 +40,20 @@ output {
 ```
 
 La propriété "index" spécifie le nom de l'index Elasticsearch dans lequel les données seront stockées. Dans ce cas, le nom de l'index est "my-index-" suivi de la date actuelle dans le format "YYYY.MM.dd". Cette syntaxe utilise la fonctionnalité de formatage de chaîne de Logstash pour générer un nom d'index dynamique qui inclut la date actuelle.
+
+**logstash.conf : **
+
+```
+input {
+  file {
+    path => "/input/inlog.log"
+  }
+}
+
+output {
+   elasticsearch {
+    hosts => ["Elasticsearch"]
+    index => "my-index-%{+YYYY.MM.dd}"
+  }
+}
+```
