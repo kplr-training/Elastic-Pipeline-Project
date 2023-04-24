@@ -8,6 +8,9 @@ L'application comprend trois services: Elasticsearch, Logstash et Kibana, qui fo
 ### 1. Determiner la version
 
 La version utilisée est 3.6, qui est la version du format de fichier Compose. Ce fichier est compatible avec Docker Engine 18.03.0 ou supérieur.
+```
+version: '3.6'
+```
 
 ### 2. Determiner les services
 
