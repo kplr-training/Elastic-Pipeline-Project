@@ -107,6 +107,9 @@ Le troisième service défini est Kibana, qui utilise l'image Docker Kibana offi
   ```
     gp url 9200
   ```
+  ![image](https://user-images.githubusercontent.com/123748165/234105783-189d9242-fa5b-48c1-a116-1daf2a68f507.png)
+  
+
 * L'option "depends_on" spécifie que le service Kibana dépend du service Elasticsearch, ce qui signifie que le service Elasticsearch doit être démarré avant le service Kibana. 
 * Le service est connecté au réseau "elk".
 
