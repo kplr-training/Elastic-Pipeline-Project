@@ -16,4 +16,8 @@ salut
 
 Définir le dossier "/logstash" contenant le fichier "logstash.conf", il est utilisé pour collecter, traiter et transférer des données de différents formats à différents endroits.
 
-Le fichier "logstash.conf" contient un code , ce code comporte deux parties : la configuration d'entrée et la configuration de sortie.
+Le fichier "logstash.conf" contient un code , ce code comporte deux parties : **la configuration d'entrée et la configuration de sortie.**
+
+La configuration d'entrée spécifie la source de données à partir de laquelle Logstash collecte les données. Dans ce cas, la source est un fichier appelé "/input/inlog.log". Le chemin d'accès absolu du fichier est spécifié en utilisant le chemin d'access "path".
+
+
