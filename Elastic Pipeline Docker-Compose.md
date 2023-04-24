@@ -48,3 +48,44 @@ services:
 * Le service expose deux ports, 9200 et 9300, qui sont utilisés pour la communication avec Elasticsearch. 
 * Le service est connecté au réseau "elk".
 
+Le deuxième service défini est Logstash, qui utilise l'image Docker Logstash officielle avec la version 8.7.0.
+
+```
+version: '3.6'
+services:
+  Elasticsearch:
+    image: elasticsearch:8.7.0
+    container_name: elasticsearch
+    restart: always
+    volumes:
+    - elastic_data:/usr/share/elasticsearch/data/
+    environment:
+      XPACK_MONITORING_ENABLED: false
+      xpack.security.enabled: false
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      discovery.type: single-node
+      network.host: "0.0.0.0" 
+    ports:
+    - '9200:9200'
+    - '9300:9300'
+    networks:
+      - elk
+
+  Logstash:
+    image: logstash:8.7.0
+    container_name: logstash
+    restart: always
+    volumes:
+    - ./logstash/:/logstash_dir
+    - ./input:/input
+    - ./output:/output
+    command: logstash -f /logstash_dir/logstash.conf 
+    depends_on:
+      - Elasticsearch
+    ports:
+    - '9600:9600'
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    networks:
+      - elk
+```
