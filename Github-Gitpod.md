@@ -1,6 +1,7 @@
 # Creation Repository Github Vide
 
-Pour créer un nouveau repository vide, il faut se connecter à son compte GitHub et créer un nouveau projet en cliquant sur le bouton "New". 
+Pour créer un nouveau repository vide, il faut se connecter à son compte GitHub et créer un nouveau projet en cliquant sur le bouton `New`.![image](https://user-images.githubusercontent.com/123748165/234104691-4b8cced9-0ce7-4481-93bd-ccb0e241d645.png).
+
 Il est nécessaire de donner un nom et une description au repository, ainsi que de sélectionner les options appropriées, comme la visibilité "Publique". 
 Enfin, il suffit de cliquer sur le bouton "Create repository" pour finaliser la création du nouveau dépôt.
 
