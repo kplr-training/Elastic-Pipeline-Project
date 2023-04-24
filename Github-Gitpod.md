@@ -1,10 +1,10 @@
-# Creation Repository Github
+# Creation Repository Github Vide
 
-Pour créer un nouveau dépôt, il faut se connecter à son compte GitHub et créer un nouveau projet en cliquant sur le bouton "New". 
-Il est nécessaire de donner un nom et une description au dépôt, ainsi que de sélectionner les options appropriées, comme la visibilité. 
+Pour créer un nouveau repository vide, il faut se connecter à son compte GitHub et créer un nouveau projet en cliquant sur le bouton "New". 
+Il est nécessaire de donner un nom et une description au repository, ainsi que de sélectionner les options appropriées, comme la visibilité "Publique". 
 Enfin, il suffit de cliquer sur le bouton "Create repository" pour finaliser la création du nouveau dépôt.
 
-![image](https://user-images.githubusercontent.com/123757632/234007352-f6f6435d-e1cf-42d9-be62-b9cdae2f9874.png)
+![image](https://user-images.githubusercontent.com/123757632/234042032-5c8ce33b-1915-4a65-a8a6-f709000f189b.png)
 
 # Creation Compte Gitpod
 - Aller sur : [Gitpod](https://www.gitpod.io/)
