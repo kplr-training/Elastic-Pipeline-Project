@@ -9,35 +9,10 @@ L'application comprend trois services: Elasticsearch, Logstash et Kibana, qui fo
 
 La version utilisée est 3.6, qui est la version du format de fichier Compose. Ce fichier est compatible avec Docker Engine 18.03.0 ou supérieur.
 
-```
-version: '3.6'
-```
-
 ### 2. Determiner les services
 
 Le premier service défini est Elasticsearch, qui utilise l'image Docker Elasticsearch officielle avec la version 8.7.0.
 
-```
-version: '3.6'
-services:
-  Elasticsearch:
-    image: elasticsearch:8.7.0
-    container_name: elasticsearch
-    restart: always
-    volumes:
-    - elastic_data:/usr/share/elasticsearch/data/
-    environment:
-      XPACK_MONITORING_ENABLED: false
-      xpack.security.enabled: false
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      discovery.type: single-node
-      network.host: "0.0.0.0" 
-    ports:
-    - '9200:9200'
-    - '9300:9300'
-    networks:
-      - elk
-```
 * Le service est nommé "Elasticsearch" et a un nom de conteneur "elasticsearch". 
 * L'option "restart" est définie sur "always" pour garantir que le conteneur redémarre automatiquement en cas de défaillance. 
 * Le service a un volume défini, qui est "elastic_data".Ce volume est utilisé pour persister les données Elasticsearch. 
@@ -50,45 +25,6 @@ services:
 
 Le deuxième service défini est Logstash, qui utilise l'image Docker Logstash officielle avec la version 8.7.0.
 
-```
-version: '3.6'
-services:
-  Elasticsearch:
-    image: elasticsearch:8.7.0
-    container_name: elasticsearch
-    restart: always
-    volumes:
-    - elastic_data:/usr/share/elasticsearch/data/
-    environment:
-      XPACK_MONITORING_ENABLED: false
-      xpack.security.enabled: false
-      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
-      discovery.type: single-node
-      network.host: "0.0.0.0" 
-    ports:
-    - '9200:9200'
-    - '9300:9300'
-    networks:
-      - elk
-
-  Logstash:
-    image: logstash:8.7.0
-    container_name: logstash
-    restart: always
-    volumes:
-    - ./logstash/:/logstash_dir
-    - ./input:/input
-    - ./output:/output
-    command: logstash -f /logstash_dir/logstash.conf 
-    depends_on:
-      - Elasticsearch
-    ports:
-    - '9600:9600'
-    environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    networks:
-      - elk
-```
 * Le service est nommé "Logstash" et a un nom de conteneur "logstash".
 * L'option "restart" est définie sur "always".
 * Le service a trois volumes définis, qui sont "./logstash/", "./input" et "./output". Ces volumes sont utilisés pour monter les répertoires de configuration, d'entrée et de sortie de Logstash.
@@ -97,3 +33,15 @@ services:
 * Le service expose le port 9600, qui est utilisé pour la communication avec Logstash.
 * L'option "LS_JAVA_OPTS" définit la taille de la mémoire heap Java. 
 * Le service est connecté au réseau "elk".
+
+Le troisième service défini est Kibana, qui utilise l'image Docker Kibana officielle avec la version 8.7.0. 
+* Le service est nommé "Kibana" et a un nom de conteneur "kibana". 
+* L'option "restart" est définie sur "always". 
+* Le service expose le port 5601, qui est utilisé pour la communication avec Kibana. 
+* L'option "ELASTICSEARCH_URL" spécifie l'URL Elasticsearch que Kibana doit utiliser. 
+* L'option "depends_on" spécifie que le service Kibana dépend du service Elasticsearch, ce qui signifie que le service Elasticsearch doit être démarré avant le service Kibana. 
+* Le service est connecté au réseau "elk".
+
+### 3. Determiner les sections volumes et networks
+
+Enfin, la section "volumes" définit le volume "elastic_data" utilisé par Elasticsearch, et la section "networks" définit le réseau "elk" utilisé par tous les services.
