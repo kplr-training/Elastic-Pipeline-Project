@@ -89,3 +89,11 @@ services:
     networks:
       - elk
 ```
+* Le service est nommé "Logstash" et a un nom de conteneur "logstash".
+* L'option "restart" est définie sur "always".
+* Le service a trois volumes définis, qui sont "./logstash/", "./input" et "./output". Ces volumes sont utilisés pour monter les répertoires de configuration, d'entrée et de sortie de Logstash.
+* L'option "command" est utilisée pour spécifier le fichier de configuration Logstash à utiliser.
+* L'option "depends_on" spécifie que le service Logstash dépend du service Elasticsearch, ce qui signifie que le service Elasticsearch doit être démarré avant le service Logstash.
+* Le service expose le port 9600, qui est utilisé pour la communication avec Logstash.
+* L'option "LS_JAVA_OPTS" définit la taille de la mémoire heap Java. 
+* Le service est connecté au réseau "elk".
